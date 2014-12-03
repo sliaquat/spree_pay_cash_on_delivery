@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_pay_cash_on_delivery'
-  s.version     = '0.1.0'
+  s.version     = '0.1.1'
   s.summary     = 'Spree Cash On Delivery payment method'
   s.description = 'This extension adds Cash on delivery payment method to Spree'
   s.required_ruby_version = '>= 1.9.3'
