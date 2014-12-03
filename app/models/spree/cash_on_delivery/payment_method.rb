@@ -2,47 +2,31 @@ module Spree
 
   module CashOnDelivery
 
-    class PaymentMethodConfiguration < Preferences::Configuration
-      preference :charge, :string, :default => '5.0'
-    end
-
-    PAYMENT_CONFIG = PaymentMethodConfiguration.new
 
     class PaymentMethod < Spree::PaymentMethod
-
-      # preference :charge, :string, :default => '5.0'
 
       def payment_profiles_supported?
         false # we want to show the confirm step.
       end
 
 
-      def post_create(payment)
+      def create_adjustment(payment)
         adjustment = Spree::Adjustment.create(
-            amount: PAYMENT_CONFIG.charge.to_f,
+            amount: Spree::CashOnDelivery::Config.charge.to_f,
             order: payment.order,
             adjustable: payment.order,
             source: self,
             :mandatory => true,
             :included => true,
-            label: I18n.t(:cash_on_delivery_label)
+            label: "Cash On Delivery Fee"
         )
 
         payment.order.adjustments << adjustment
 
-        payment.update_attribute(:amount, payment.amount + PAYMENT_CONFIG.charge.to_f)
+        payment.update_attribute(:amount, payment.amount + Spree::CashOnDelivery::Config.charge.to_f)
         payment.order.updater.update_adjustment_total
         payment.order.updater.update_order_total
         payment.order.persist_totals
-        # end
-      end
-
-      def update_adjustment(adjustment, src)
-        # if adjustment.adjustable.shipment.shipping_method.name != "Osebni prevzem" && !adjustment.adjustable.payments.empty?  && adjustment.adjustable.payments.last.payment_method.is_a?(Spree::CashOnDelivery::PaymentMethod)
-        adjustment.update_attribute_without_callbacks(:amount, PAYMENT_CONFIG.charge.to_f)
-        # else
-        #adjustment.destroy
-        # adjustment.update_attribute_without_callbacks(:amount, 0.0)
         # end
       end
 
