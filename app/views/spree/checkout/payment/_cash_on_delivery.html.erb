@@ -1,3 +1,4 @@
-<%= t('fee', :amount => number_to_currency(Spree::CashOnDelivery::Config.charge, currency: Spree::Config.preferred_currency, unit: "")) %> Rs.
+Cash on delivery fee <%=Spree::Config.preferred_currency%>
+<%=number_to_currency(Spree::CashOnDelivery::Config.charge, currency: Spree::Config.preferred_currency, unit: "")%>
 <% @order.bill_address ||= Spree::Address.default %>
 <%= hidden_field_tag "payment_source[#{payment_method.id}][amount]", @order.total %>
