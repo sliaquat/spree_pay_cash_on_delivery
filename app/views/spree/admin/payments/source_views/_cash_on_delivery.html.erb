@@ -1,0 +1,6 @@
+<label>Status</label> 
+<% if @payment.state? %>
+  <%= @payment.state.titleize %>
+<% else %>
+  <%= @payment.source.state.titleize %> 
+<% end %>
