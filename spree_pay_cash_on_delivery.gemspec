@@ -16,6 +16,6 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
   s.license       = "MIT"
-  s.add_dependency 'spree_core', '>= 3.0'
+  s.add_dependency 'spree_core', '~> 3.0.0.rc5'
 
 end
