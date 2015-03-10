@@ -1,4 +1,4 @@
-<%= render :partial => 'spree/admin/shared/configuration_menu' %>
+
 
 <% content_for :page_title do %>
     <%= Spree.t(:cash_on_delivery) %>
@@ -10,7 +10,7 @@
       <fieldset class="general no-border-top">
 
         <fieldset class="security no-border-bottom">
-          <legend align="center"><%= Spree.t(:cash_on_delivery_config)%></legend>
+
               <div class="field">
                 <%= label_tag(:cash_on_delivery_charge, 'Cash on delivery charge: ') + tag(:br) %>
 
@@ -19,6 +19,7 @@
 
         </fieldset>
 
+        <br/>
         <div class="form-buttons filter-actions actions" data-hook="buttons">
           <%= button Spree.t('actions.update'), 'refresh' %>
           <span class="or"><%= Spree.t(:or) %></span>
