@@ -10,8 +10,8 @@ Spree::Payment.class_eval do
       self.source = payment_method.payment_source_class.new(source_attributes)
       self.source.payment_method_id = payment_method.id
       self.source.user_id = self.order.user_id if self.order
-    end
 
+    end
   end
 
 end

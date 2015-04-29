@@ -27,6 +27,8 @@ module Spree
         payment.order.updater.update_adjustment_total
         payment.order.updater.update_order_total
         payment.order.persist_totals
+        payment.number = payment.generate_number if payment.number.blank?
+
         # end
       end
 
